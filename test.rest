@@ -1,0 +1,19 @@
+###
+# 1 GET All Quotes 
+# STATUS TESTED ✔️
+GET http://localhost:8080/
+Content-Type: application/json
+
+###
+# 2 GET Quote
+# STATUS TESTED ✔️
+GET http://localhost:8080/books
+Content-Type: application/json
+
+###
+GET http://localhost:8080/book/1
+Content-Type: application/json
+ 
+###
+GET http://localhost:8080/book/2
+Content-Type: application/json

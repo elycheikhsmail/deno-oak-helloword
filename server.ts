@@ -1,11 +1,34 @@
-// deno run --allow-net server.ts
-import { Application } from "https://deno.land/x/oak/mod.ts";
+import { Application, Router } from "https://deno.land/x/oak/mod.ts";
 
-const app = new Application();
-
-app.use((ctx) => {
-  ctx.response.body = "Hello world!";
+interface IBook {
+  id: string;
+  title: string;
+  author: string;
+}
+const books = new Map<string, IBook>();
+books.set("1", {
+  id: "1",
+  title: "The Hound of the Baskervilles",
+  author: "Conan Doyle, Arthur",
 });
 
-console.log("start server at 127.0.0.1:8000")
-await app.listen("127.0.0.1:8000");
+const router = new Router();
+router
+  .get("/", (context) => {
+    context.response.body = { msg: "Hello world!" };
+  })
+  .get("/books", (context) => {
+    context.response.body = Array.from(books.values());
+  })
+  .get("/book/:id", (context) => {
+    if (context.params && context.params.id && books.has(context.params.id)) {
+      context.response.body = books.get(context.params.id);
+    }
+  });
+
+const app = new Application();
+app.use(router.routes());
+app.use(router.allowedMethods());
+
+//await app.listen({ port: 8000 });
+addEventListener("fetch", app.fetchEventHandler());
