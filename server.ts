@@ -4,7 +4,7 @@ interface IBook {
   id: string;
   title: string;
   author: string;
-};
+}
 const books = new Map<string, IBook>();
 books.set("1", {
   id: "1",
