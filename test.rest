@@ -17,3 +17,7 @@ Content-Type: application/json
 ###
 GET http://localhost:8080/book/2
 Content-Type: application/json
+ 
+###
+GET http://localhost:8080/port
+Content-Type: application/json
