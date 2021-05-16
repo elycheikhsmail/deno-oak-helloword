@@ -24,7 +24,7 @@ router
     if (context.params && context.params.id && books.has(context.params.id)) {
       context.response.body = books.get(context.params.id);
     }
-  }).get('/port',(ctx) => {ctx.response.body = {PORT:Deno.env.get("PORT")||"1234"}}
+  }).get('/port',(ctx) => {ctx.response.body = {PORT:Deno.env.get("PORT")} }
   )
   ;
 
